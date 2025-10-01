@@ -17,7 +17,7 @@ app.use(express.json());
 
 // Redirect HTTP to HTTPS
 app.use((req, res, next) => {
-  if (req.header('x-forwarded-proto') !== 'https') {
+  if (req.header('host') !== 'localhost' && req.header('host') !== '127.0.0.1' && req.header('x-forwarded-proto') !== 'https') {
     res.redirect(`https://${req.header('host')}${req.url}`);
   } else {
     next();
